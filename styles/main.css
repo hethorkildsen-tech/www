@@ -150,11 +150,9 @@ input[type=checkbox]:checked ~ div.hide_if_no {display:block}
 }
 
 .bd-banner{
-	margin-left: 0px;
-  margin-bottom: 20px;
-  width: 100%;
-  height: auto;
-  padding-top: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  max-height: 130px;
 }
 
 .card-horizontal {

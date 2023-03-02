@@ -10,6 +10,7 @@ input[type=checkbox]:checked ~ div.hide_if_no {display:block}
     object-fit: cover;
 }
 
+
 .card-styling{
   margin-bottom: 10px;
 }
@@ -855,3 +856,4 @@ a:hover {
   width: auto;
   height: auto;
 }
+

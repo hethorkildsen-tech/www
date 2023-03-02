@@ -1,0 +1,28 @@
+.smallImg {
+	width: 80%;
+}
+
+#hoeghImg {
+	width: 70%;
+	margin-top: 11%;
+}
+
+#DNVImg {
+	height: 180%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.paddingImg {
+	padding: 10px;
+}
+
+#BWImg {
+	height: 80%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+#SFDImg {
+	width: 76%;
+}

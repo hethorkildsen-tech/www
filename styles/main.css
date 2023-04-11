@@ -855,3 +855,22 @@ a:hover {
   height: auto;
 }
 
+.bed-images{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 20px;
+  width: 1200px;
+  justify-content: center;
+  align-items: baseline;
+
+	margin-bottom: 20px;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+
+.bed-images img{
+  flex: 33.3%;
+  max-width: 350px;
+}

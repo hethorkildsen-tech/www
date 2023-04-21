@@ -860,17 +860,16 @@ a:hover {
   flex-wrap: wrap;
   flex-direction: row;
   gap: 20px;
-  width: 1200px;
+  width: 95%;
   justify-content: center;
   align-items: baseline;
 
 	margin-bottom: 20px;
-  margin-left: 100px;
-  margin-right: 100px;
-}
 
+}
 
 .bed-images img{
   flex: 33.3%;
-  max-width: 350px;
+  width: 25vw;
 }
+

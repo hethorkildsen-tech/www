@@ -892,6 +892,7 @@ a:hover {
 .carousel-inner img {
   width: auto;
   height: auto;
+  max-height:560px;
 }
 
 

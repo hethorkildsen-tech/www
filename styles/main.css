@@ -860,7 +860,7 @@ a:hover {
   flex-wrap: wrap;
   flex-direction: row;
   gap: 20px;
-  width: 95%;
+  width: 100%;
   justify-content: center;
   align-items: baseline;
 

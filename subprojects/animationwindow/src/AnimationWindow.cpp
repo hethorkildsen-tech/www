@@ -16,7 +16,6 @@
 #include "internal/KeyboardKeyConverter.h"
 #include "internal/nuklear_configured.h"
 #include "widgets/Button.h"
-
 static bool sdlHasBeenInitialised = false;
 
 TDT4102::AnimationWindow::AnimationWindow(int x, int y, int width, int height, const std::string& title) {
@@ -42,7 +41,7 @@ TDT4102::AnimationWindow::AnimationWindow(int x, int y, int width, int height, c
     }
 
     // Default window background colour
-    SDL_SetRenderDrawColor(rendererHandle, 0xFF, 0xFF, 0xFF, 0xFF);
+    SDL_SetRenderDrawColor(rendererHandle, backgroundColor.redChannel, backgroundColor.greenChannel, backgroundColor.blueChannel, backgroundColor.alphaChannel);
     SDL_RenderClear(rendererHandle);
 
     SDL_RendererInfo rendererInfo;
@@ -70,7 +69,7 @@ void TDT4102::AnimationWindow::destroy() {
         SDL_DestroyWindow(windowHandle);
         windowHandle = nullptr;
     }
-    if(context != nullptr) {
+    if (context != nullptr) {
         nk_free(context);
         context = nullptr;
     }
@@ -78,6 +77,7 @@ void TDT4102::AnimationWindow::destroy() {
 
 void TDT4102::AnimationWindow::show_frame() {
     SDL_RenderPresent(rendererHandle);
+    deltaMouseWheel = 0;
 
     SDL_Event event;
     nk_input_begin(context);
@@ -92,9 +92,19 @@ void TDT4102::AnimationWindow::show_frame() {
             KeyboardKey releasedKey = TDT4102::internal::convertSDLKeyToKeyboardKey(event.key.keysym);
             currentKeyStates[releasedKey] = false;
         } else if (event.type == SDL_MOUSEBUTTONDOWN) {
-            currentLeftMouseButtonState = true;
+            if (event.button.button == SDL_BUTTON_LEFT) {
+                currentLeftMouseButtonState = true;
+            } else if (event.button.button == SDL_BUTTON_RIGHT) {
+                currentRightMouseButtonState = true;
+            }
         } else if (event.type == SDL_MOUSEBUTTONUP) {
-            currentLeftMouseButtonState = false;
+            if (event.button.button == SDL_BUTTON_LEFT) {
+                currentLeftMouseButtonState = false;
+            } else if (event.button.button == SDL_BUTTON_RIGHT) {
+                currentRightMouseButtonState = false;
+            }
+        } else if (event.type == SDL_MOUSEWHEEL) {
+            deltaMouseWheel = event.wheel.preciseY; // The amount scrolled vertically, positive away from the user and negative toward the user
         }
 
         nk_sdl_handle_event(&event);
@@ -104,10 +114,12 @@ void TDT4102::AnimationWindow::show_frame() {
 
 void TDT4102::AnimationWindow::update_gui() {
     for (Widget& widget : widgets) {
-        startNuklearDraw(widget.position, widget.uniqueWidgetName, widget.width, widget.height);
         fontCache.setFont(context, Font::arial, 18);
-        widget.update(context);
-        endNuklearDraw();
+        if (widget.isVisible) {
+            startNuklearDraw(widget.position, widget.uniqueWidgetName, widget.width, widget.height);
+            widget.update(context);
+            endNuklearDraw();
+        }
     }
 }
 
@@ -119,7 +131,7 @@ void TDT4102::AnimationWindow::next_frame() {
 
     // Colour must be reset as a previously drawn element may have changed the current colour
     if (!keepPreviousFrame) {
-        SDL_SetRenderDrawColor(rendererHandle, backgroundColour.redChannel, backgroundColour.greenChannel, backgroundColour.blueChannel, backgroundColour.alphaChannel);
+        SDL_SetRenderDrawColor(rendererHandle, backgroundColor.redChannel, backgroundColor.greenChannel, backgroundColor.blueChannel, backgroundColor.alphaChannel);
         SDL_RenderClear(rendererHandle);
     }
 
@@ -131,9 +143,13 @@ bool TDT4102::AnimationWindow::should_close() const {
     return closeRequested;
 }
 
+void TDT4102::AnimationWindow::close() {
+    closeRequested = true;
+}
+
 void TDT4102::AnimationWindow::wait_for_close() {
     // This forces text to render, and ensures it appears on the screenshot that will be shown perpetually
-    update_gui();
+    // update_gui();
     nk_sdl_render(NK_ANTI_ALIASING_ON);
 
     // take a screenshot such that the window contents can be redrawn
@@ -213,10 +229,14 @@ void TDT4102::AnimationWindow::draw_circle(TDT4102::Point centre, int radius, TD
     }
 }
 
-void TDT4102::AnimationWindow::draw_rectangle(TDT4102::Point topLeftPoint, int width, int height, TDT4102::Color color) {
+void TDT4102::AnimationWindow::draw_rectangle(TDT4102::Point topLeftPoint, int width, int height, TDT4102::Color color, TDT4102::Color borderColor) {
     SDL_Rect fillRect = {topLeftPoint.x, topLeftPoint.y, width, height};
     SDL_SetRenderDrawColor(rendererHandle, color.redChannel, color.greenChannel, color.blueChannel, color.alphaChannel);
     SDL_RenderFillRect(rendererHandle, &fillRect);
+    if (borderColor != Color::transparent) {
+        SDL_SetRenderDrawColor(rendererHandle, borderColor.redChannel, borderColor.greenChannel, borderColor.blueChannel, borderColor.alphaChannel);
+        SDL_RenderDrawRect(rendererHandle, &fillRect);
+    }
 }
 
 void TDT4102::AnimationWindow::draw_image(TDT4102::Point topLeftPoint, TDT4102::Image& image, int imageWidth, int imageHeight) {
@@ -285,14 +305,14 @@ void TDT4102::AnimationWindow::draw_arc(TDT4102::Point center, int width, int he
     SDL_RenderDrawLines(rendererHandle, internal::circleBorderBuffer.data(), internal::SLICES_PER_CIRCLE);
 }
 
-bool TDT4102::AnimationWindow::is_key_down(KeyboardKey key) {
+bool TDT4102::AnimationWindow::is_key_down(KeyboardKey key) const {
     if (currentKeyStates.count(key) == 0) {
         return false;
     }
     return currentKeyStates.at(key);
 }
 
-TDT4102::Point TDT4102::AnimationWindow::get_mouse_coordinates() {
+TDT4102::Point TDT4102::AnimationWindow::get_mouse_coordinates() const {
     int mouseX, mouseY;
     SDL_GetMouseState(&mouseX, &mouseY);
     return {mouseX, mouseY};
@@ -303,22 +323,38 @@ void TDT4102::AnimationWindow::add(TDT4102::Widget& widgetToAdd) {
     widgets.emplace_back(widgetToAdd);
 }
 
-TDT4102::Point TDT4102::AnimationWindow::getWindowDimensions() {
+void TDT4102::AnimationWindow::show_info_dialog(const std::string& message) const {
+    SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "Information", message.c_str(), windowHandle);
+}
+
+void TDT4102::AnimationWindow::show_error_dialog(const std::string& message) const {
+    SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Error", message.c_str(), windowHandle);
+}
+
+TDT4102::Point TDT4102::AnimationWindow::getWindowDimensions() const {
     TDT4102::Point dimensions;
     SDL_GetRendererOutputSize(rendererHandle, &dimensions.x, &dimensions.y);
     return dimensions;
 }
 
-int TDT4102::AnimationWindow::width() {
+int TDT4102::AnimationWindow::width() const {
     return getWindowDimensions().x;
 }
 
-int TDT4102::AnimationWindow::height() {
+int TDT4102::AnimationWindow::height() const {
     return getWindowDimensions().y;
 }
 
 bool TDT4102::AnimationWindow::is_left_mouse_button_down() const {
     return currentLeftMouseButtonState;
+}
+
+bool TDT4102::AnimationWindow::is_right_mouse_button_down() const {
+    return currentRightMouseButtonState;
+}
+
+float TDT4102::AnimationWindow::get_delta_mouse_wheel() const {
+    return deltaMouseWheel;
 }
 
 void TDT4102::AnimationWindow::startNuklearDraw(TDT4102::Point location, std::string uniqueWindowName, unsigned int width, unsigned int height) {
@@ -358,4 +394,8 @@ void TDT4102::AnimationWindow::startNuklearDraw(TDT4102::Point location, std::st
 
 void TDT4102::AnimationWindow::endNuklearDraw() {
     nk_end(context);
+}
+
+void TDT4102::AnimationWindow::setBackgroundColor(TDT4102::Color newBackgroundColor) {
+    backgroundColor = newBackgroundColor;
 }

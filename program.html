@@ -73,7 +73,7 @@
 
 <div class="tidslinje-container">
 
-  <div class="timeline-line"></div> <!-- Sammenhengende vertikal linje -->
+  <div class="timeline-line"></div> <!-- Sammenhengende linje -->
 
   <div class="event">
     <div class="timeline">
@@ -178,11 +178,11 @@
 }
 
 .timeline {
+  position: relative;
   width: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-right: 20px;
 }
 
 .bubble {
@@ -190,7 +190,12 @@
   height: 20px;
   background-color: #ccc; /* grå boble */
   border-radius: 50%;
+  position: relative;
   z-index: 1;
+}
+
+.event-content {
+  margin-left: 15px;
 }
 
 .event-content h3 {
@@ -203,8 +208,8 @@
 }
 
 .event-content .arrow {
-  margin-left: 8px;
-  font-size: 0.8em; /* mindre pil */
+  margin-left: 6px;
+  font-size: 0.7em; /* mindre pil */
   color: #999; /* lys grå pil */
   transition: transform 0.3s;
   user-select: none;
@@ -236,6 +241,7 @@ document.querySelectorAll(".event-content h3").forEach(header => {
   });
 });
 </script>
+
 
 
 

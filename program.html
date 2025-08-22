@@ -73,12 +73,14 @@
 
 <div class="tidslinje-container">
 
+  <div class="timeline-line"></div> <!-- Sammenhengende vertikal linje -->
+
   <div class="event">
     <div class="timeline">
       <div class="bubble"></div>
     </div>
     <div class="event-content">
-      <h3 style="color:#004578;">Frokostforedrag <span class="arrow">▼</span></h3>
+      <h3>Frokostforedrag <span class="arrow">▼</span></h3>
       <div class="details">
         <p>m/ Subsea7, Equinor, Global Maritime, DNV og Sjøfartsdirektoratet</p>
         <p>Bedriftsdagen starter med frokostforedrag, som er et mindre foredrag koblet til dagens tema. Temaet vil offentliggjøres i løpet av høsten.</p>
@@ -92,7 +94,7 @@
       <div class="bubble"></div>
     </div>
     <div class="event-content">
-      <h3 style="color:#009688;">Standtid i vrimle <span class="arrow">▼</span></h3>
+      <h3>Standtid i vrimle <span class="arrow">▼</span></h3>
       <div class="details">
         <p>Studentene kan møte bedriftene på stand i vrimleområdet.</p>
       </div>
@@ -104,7 +106,7 @@
       <div class="bubble"></div>
     </div>
     <div class="event-content">
-      <h3 style="color:#FF5722;">Sommerjobbmaraton <span class="arrow">▼</span></h3>
+      <h3>Sommerjobbmaraton <span class="arrow">▼</span></h3>
       <div class="details">
         <p>Her får bedriftene 5–8 minutter til å pitche sitt sommerjobb-tilbud for studentene. Formålet med dette er at studentene i de lavere årstrinnene skal sitte igjen med mer kunnskap om hva bedriftene vil ha i en sommerstudent, samt informasjon om hvordan søknadsprosessen foregår og når eventuelle frister er. Dette skaper en tidlig interesse blant studentene, og sikrer bedriftene mange motiverte marinstudenter i søkermassen.</p>
       </div>
@@ -116,7 +118,7 @@
       <div class="bubble"></div>
     </div>
     <div class="event-content">
-      <h3 style="color:#673AB7;">Debatt om årets tema <span class="arrow">▼</span></h3>
+      <h3>Debatt om årets tema <span class="arrow">▼</span></h3>
       <div class="details">
         <p>Her samles kloke hoder fra hoved- og samarbeidspartnerne for å diskutere rundt et dagsaktuelt maritimt tema. Her vil det være åpent for spørsmål fra studenter i regi av ordstyreren.</p>
       </div>
@@ -128,7 +130,7 @@
       <div class="bubble"></div>
     </div>
     <div class="event-content">
-      <h3 style="color:#FF9800;">Speedintervju <span class="arrow">▼</span></h3>
+      <h3>Speedintervju <span class="arrow">▼</span></h3>
       <div class="details">
         <p>Under selve dagen vil det være muligheter for å holde speedintervjuer parallelt med stands. Her får bedriftene et rom til rådighet, der de utfører speedintervju med påmeldte studenter. Dette er svært populært blant studentene, og en gylden mulighet til å kapre en snart ferdigutdannet sivilingeniør med ettertraktet kompetanse.</p>
       </div>
@@ -140,7 +142,7 @@
       <div class="bubble"></div>
     </div>
     <div class="event-content">
-      <h3 style="color:#E91E63;">Middag på Kvilhaugen og UKA-revy <span class="arrow">▼</span></h3>
+      <h3>Middag på Kvilhaugen og UKA-revy <span class="arrow">▼</span></h3>
       <div class="details">
         <p>På kvelden er det lagt opp til middag for bedriftsrepresentanter og diplomstudentene. Her vil det være en ypperlig mulighet til å bli enda bedre kjent med studentene som snart skal ut i arbeidslivet og er på jakt etter fast jobb.</p>
         <p>Etter middagen er det lagt opp til at vi drar til Studentersamfunnet og ser UKA-revyen sammen.</p>
@@ -152,21 +154,30 @@
 
 <style>
 .tidslinje-container {
-  display: flex;
-  flex-direction: column;
-  margin-left: 50px;
   position: relative;
+  margin-left: 50px;
   font-family: Arial, sans-serif;
+}
+
+.timeline-line {
+  position: absolute;
+  left: 19px; /* midt på boblene */
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background-color: #ccc; /* vertikal linje */
+  z-index: 0;
 }
 
 .event {
   display: flex;
   align-items: flex-start;
   margin-bottom: 30px;
+  position: relative;
+  z-index: 1;
 }
 
 .timeline {
-  position: relative;
   width: 30px;
   display: flex;
   flex-direction: column;
@@ -182,28 +193,18 @@
   z-index: 1;
 }
 
-.line {
-  width: 4px;
-  background-color: #ccc; /* linje mellom boblene */
-  flex-grow: 1;
-  margin-top: -2px;
-  position: absolute;
-  top: 20px;
-  left: 8px;
-  bottom: 0;
-}
-
 .event-content h3 {
   margin: 0;
   font-size: 1.1em;
   display: flex;
   align-items: center;
   cursor: pointer;
+  color: #003366; /* mørkeblå overskrift */
 }
 
 .event-content .arrow {
-  margin-left: 10px;
-  font-size: 0.9em;
+  margin-left: 8px;
+  font-size: 0.8em; /* mindre pil */
   color: #999; /* lys grå pil */
   transition: transform 0.3s;
   user-select: none;
@@ -235,6 +236,7 @@ document.querySelectorAll(".event-content h3").forEach(header => {
   });
 });
 </script>
+
 
 
 

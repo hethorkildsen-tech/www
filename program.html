@@ -64,11 +64,113 @@
   </nav>
 </div>
 
-<div class="container-fluid">
+<!-- <div class="container-fluid">
   <p style="font-weight: bold; font-size: xx-large; margin-top: 40px; margin-bottom: 20px; margin-left: 15%; color: gray;">
     Dagsplan kommer
   </p>
+</div> -->
+
+
+
+<div class="dagsplan">
+  <h2>Dagsplan</h2>
+
+  <div class="event">
+    <button class="accordion">Frokostforedrag</button>
+    <div class="panel">
+      <p>m/ Subsea7, Equinor, Global Maritime, DNV og Sjøfartsdirektoratet</p>
+      <p>Bedriftsdagen starter med frokostforedrag, som er et mindre foredrag koblet til dagens tema. Temaet vil offentliggjøres i løpet av høsten.</p>
+      <p>På frokostforedraget er det bare samarbeidspartnere sammen med hovedsamarbeidspartner som har mulighet til å delta. Det er opp til hver bedrift hva de ønsker å fokusere på i sin del av frokostforedraget.</p>
+    </div>
+  </div>
+
+  <div class="event">
+    <button class="accordion">Standtid i vrimle</button>
+    <div class="panel">
+      <p>Studentene kan møte bedriftene på stand i vrimleområdet.</p>
+    </div>
+  </div>
+
+  <div class="event">
+    <button class="accordion">Sommerjobbmaraton</button>
+    <div class="panel">
+      <p>Her får bedriftene 5–8 minutter til å pitche sitt sommerjobb-tilbud for studentene. Formålet med dette er at studentene i de lavere årstrinnene skal sitte igjen med mer kunnskap om hva bedriftene vil ha i en sommerstudent, samt informasjon om hvordan søknadsprosessen foregår og når eventuelle frister er. Dette skaper en tidlig interesse blant studentene, og sikrer bedriftene mange motiverte marinstudenter i søkermassen.</p>
+    </div>
+  </div>
+
+  <div class="event">
+    <button class="accordion">Debatt om årets tema</button>
+    <div class="panel">
+      <p>Her samles kloke hoder fra hoved- og samarbeidspartnerne for å diskutere rundt et dagsaktuelt maritimt tema. Her vil det være åpent for spørsmål fra studenter i regi av ordstyreren.</p>
+    </div>
+  </div>
+
+  <div class="event">
+    <button class="accordion">Speedintervju</button>
+    <div class="panel">
+      <p>Under selve dagen vil det være muligheter for å holde speedintervjuer parallelt med stands. Her får bedriftene et rom til rådighet, der de utfører speedintervju med påmeldte studenter. Dette er svært populært blant studentene, og en gylden mulighet til å kapre en snart ferdigutdannet sivilingeniør med ettertraktet kompetanse.</p>
+    </div>
+  </div>
+
+  <div class="event">
+    <button class="accordion">Middag på Kvilhaugen og UKA-revy</button>
+    <div class="panel">
+      <p>På kvelden er det lagt opp til middag for bedriftsrepresentanter og diplomstudentene. Her vil det være en ypperlig mulighet til å bli enda bedre kjent med studentene som snart skal ut i arbeidslivet og er på jakt etter fast jobb.</p>
+      <p>Etter middagen er det lagt opp til at vi drar til Studentersamfunnet og ser UKA-revyen sammen.</p>
+    </div>
+  </div>
 </div>
+
+<style>
+.dagsplan {
+  font-family: Arial, sans-serif;
+  max-width: 700px;
+  margin: 0 auto;
+}
+.accordion {
+  background-color: #004578;
+  color: white;
+  cursor: pointer;
+  padding: 12px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: 0.3s;
+  font-size: 1.1em;
+  border-radius: 8px;
+  margin-top: 5px;
+}
+.accordion:hover {
+  background-color: #0066aa;
+}
+.panel {
+  padding: 0 15px;
+  display: none;
+  overflow: hidden;
+  background-color: #f5f5f5;
+  border-radius: 0 0 8px 8px;
+  margin-bottom: 8px;
+}
+.panel p {
+  margin: 10px 0;
+}
+</style>
+
+<script>
+document.querySelectorAll(".accordion").forEach(button => {
+  button.addEventListener("click", () => {
+    button.classList.toggle("active");
+    const panel = button.nextElementSibling;
+    panel.style.display = panel.style.display === "block" ? "none" : "block";
+  });
+});
+</script>
+
+
+
+
+
 
 <!-- Bruk denne når du oppdaterer dagsplan, bare uncomment den-->
 <!-- <div class="container-fluid">

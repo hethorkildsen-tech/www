@@ -81,23 +81,46 @@
     </a>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item"><a class="nav-link active" href="program.html">Program</a></li>
-        <li class="nav-item"><a class="nav-link" href="bedrifter.html">Bedrifter</a></li>
-        <li class="nav-item"><a class="nav-link" href="sponsorer.html">Sponsorer</a></li>
-        <li class="nav-item"><a class="nav-link" href="forstudenter.html">For studenter</a></li>
-        <li class="nav-item"><a class="nav-link" href="forbedrifter.html">For bedrifter</a></li>
-        <li class="nav-item"><a class="nav-link" href="kontakt-oss.html">Kontakt</a></li>
-        <li class="nav-item"><a class="nav-link" href="stillingsannonser.html">Stillingsannonser</a></li>
+        <li class="nav-item">
+          <a class="nav-link active" href="program.html">Program</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="bedrifter.html">Bedrifter</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="sponsorer.html">Sponsorer</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="forstudenter.html">For studenter</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="forbedrifter.html">For bedrifter</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="kontakt-oss.html">Kontakt</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="stillingsannonser.html">Stillingsannonser</a>
+        </li>
       </ul>
     </div>
   </nav>
 </div>
 
+<!-- <div class="container-fluid">
+  <p style="font-weight: bold; font-size: xx-large; margin-top: 40px; margin-bottom: 20px; margin-left: 15%; color: gray;">
+    Dagsplan kommer
+  </p>
+</div> -->
+
 <div class="tidslinje-container">
+
   <div class="timeline-line"></div> <!-- Sammenhengende linje -->
 
   <div class="event">
-    <div class="timeline"><div class="bubble"></div></div>
+    <div class="timeline">
+      <div class="bubble"></div>
+    </div>
     <div class="event-content">
       <h3>Frokostforedrag <span class="arrow">▼</span></h3>
       <div class="details">
@@ -109,7 +132,9 @@
   </div>
 
   <div class="event">
-    <div class="timeline"><div class="bubble"></div></div>
+    <div class="timeline">
+      <div class="bubble"></div>
+    </div>
     <div class="event-content">
       <h3>Standtid i vrimle <span class="arrow">▼</span></h3>
       <div class="details">
@@ -119,7 +144,9 @@
   </div>
 
   <div class="event">
-    <div class="timeline"><div class="bubble"></div></div>
+    <div class="timeline">
+      <div class="bubble"></div>
+    </div>
     <div class="event-content">
       <h3>Sommerjobbmaraton <span class="arrow">▼</span></h3>
       <div class="details">
@@ -129,7 +156,9 @@
   </div>
 
   <div class="event">
-    <div class="timeline"><div class="bubble"></div></div>
+    <div class="timeline">
+      <div class="bubble"></div>
+    </div>
     <div class="event-content">
       <h3>Debatt om årets tema <span class="arrow">▼</span></h3>
       <div class="details">
@@ -139,7 +168,9 @@
   </div>
 
   <div class="event">
-    <div class="timeline"><div class="bubble"></div></div>
+    <div class="timeline">
+      <div class="bubble"></div>
+    </div>
     <div class="event-content">
       <h3>Speedintervju <span class="arrow">▼</span></h3>
       <div class="details">
@@ -149,7 +180,9 @@
   </div>
 
   <div class="event">
-    <div class="timeline"><div class="bubble"></div></div>
+    <div class="timeline">
+      <div class="bubble"></div>
+    </div>
     <div class="event-content">
       <h3>Middag på Kvilhaugen og UKA-revy <span class="arrow">▼</span></h3>
       <div class="details">
@@ -158,6 +191,7 @@
       </div>
     </div>
   </div>
+
 </div>
 
 <style>
@@ -169,18 +203,18 @@
 
 .timeline-line {
   position: absolute;
-  left: 19px;
+  left: 19px; /* midt på boblene */
   top: 0;
   bottom: 0;
   width: 4px;
-  background-color: #ccc;
+  background-color: #ccc; /* vertikal linje */
   z-index: 0;
 }
 
 .event {
   display: flex;
   align-items: flex-start;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   position: relative;
   z-index: 1;
 }
@@ -196,67 +230,38 @@
 .bubble {
   width: 20px;
   height: 20px;
-  background-color: #ccc;
+  background-color: #ccc; /* grå boble */
   border-radius: 50%;
   position: relative;
   z-index: 1;
 }
 
 .event-content {
-  margin-left: 25px;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-  color: #fff;
-  max-width: 650px;
-  transition: transform 0.2s ease-in-out;
-}
-
-.event-content:hover {
-  transform: translateY(-4px);
+  margin-left: 15px;
 }
 
 .event-content h3 {
   margin: 0;
-  font-size: 1.2em;
+  font-size: 1.1em;
   display: flex;
   align-items: center;
   cursor: pointer;
-  font-weight: bold;
+  color: #003366; /* mørkeblå overskrift */
 }
 
 .event-content .arrow {
-  margin-left: 8px;
-  font-size: 0.8em;
+  margin-left: 6px;
+  font-size: 0.7em; /* mindre pil */
+  color: #999; /* lys grå pil */
   transition: transform 0.3s;
+  user-select: none;
 }
 
 .details {
   display: none;
-  margin-top: 12px;
+  margin-top: 8px;
   font-size: 0.95em;
-  line-height: 1.6;
-}
-
-/* Ulike blåfarger på boksene */
-.event:nth-child(1) .event-content {
-  background: linear-gradient(135deg, #003366, #00509e);
-}
-.event:nth-child(2) .event-content {
-  background: linear-gradient(135deg, #004080, #0066cc);
-}
-.event:nth-child(3) .event-content {
-  background: linear-gradient(135deg, #00509e, #3399ff);
-}
-.event:nth-child(4) .event-content {
-  background: linear-gradient(135deg, #0066cc, #66b2ff);
-}
-.event:nth-child(5) .event-content {
-  background: linear-gradient(135deg, #1a75ff, #80bfff);
-}
-.event:nth-child(6) .event-content {
-  background: linear-gradient(135deg, #3399ff, #99ccff);
-  color: #002244; /* mørk tekst for lys bakgrunn */
+  line-height: 1.5;
 }
 </style>
 
@@ -267,6 +272,7 @@ document.querySelectorAll(".event-content h3").forEach(header => {
     const arrow = header.querySelector(".arrow");
     const isOpen = details.style.display === "block";
 
+    // Lukk alle andre
     document.querySelectorAll(".details").forEach(d => d.style.display = "none");
     document.querySelectorAll(".arrow").forEach(a => a.textContent = "▼");
 
@@ -277,5 +283,3 @@ document.querySelectorAll(".event-content h3").forEach(header => {
   });
 });
 </script>
-</body>
-</html>

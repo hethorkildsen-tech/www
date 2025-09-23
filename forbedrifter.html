@@ -111,11 +111,37 @@
 
 
     <div class="faq-item">
-      <h4 class="faq-title"><i class="fas fa-home"></i> Om bygget <span class="arrow">▼</span></h4>
-      <div class="faq-content">
-        <p>For tidligere studenter eller bedriftsrepresentanter som er interessert, har vi lagt ved noen bilder av bygget. Om dere går rett frem fra inngangen og gjennom den første glassdøren, kommer dere til 4. klasse sine lesesaler, også kalt Maloftet. Dersom dere i stedet skal til det nye styrekontoret, går dere til venstre fra hovedinngangen, forbi trappen og inn glassdøren. Her vil kontoret være det første på venstre side.</p>
-      </div>
+  <h4 class="faq-title"><i class="fas fa-home"></i> Om bygget <span class="arrow">▼</span></h4>
+  <div class="faq-content">
+    <p>For tidligere studenter eller bedriftsrepresentanter som er interessert, har vi lagt ved noen bilder av bygget. Om dere går rett frem fra inngangen og gjennom den første glassdøren, kommer dere til 4. klasse sine lesesaler, også kalt Maloftet. Dersom dere i stedet skal til det nye styrekontoret, går dere til venstre fra hovedinngangen, forbi trappen og inn glassdøren. Her vil kontoret være det første på venstre side.</p>
+
+    <!-- Bildegalleri -->
+    <div class="image-gallery">
+      <img src="img/hoved/nye bilder til nettside2025" alt="Liggende bilde 1">
+      <img src="img/staende.jpg" alt="Stående bilde">
+      <img src="img/liggende2.jpg" alt="Liggende bilde 2">
     </div>
+  </div>
+</div>
+
+<style>
+.image-gallery {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px; /* avstand mellom bildene */
+  margin-top: 15px;
+}
+.image-gallery img {
+  max-width: 30%; /* gjør at bildene skaleres pent */
+  height: auto;
+  border-radius: 6px;
+}
+.image-gallery img:nth-child(2) {
+  max-width: 25%; /* stående bildet kan være smalere */
+}
+</style>
+
 
     <div class="faq-item">
       <h4 class="faq-title"><i class="fas fa-briefcase"></i> Ekstra pakker <span class="arrow">▼</span></h4>

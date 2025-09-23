@@ -72,11 +72,146 @@
 
 
  <!-- Bilde av dagsplan -->
-<div class="container" style="margin-top:40px; margin-bottom:40px; text-align:center;">
-  <img src="img/Logo/2025/Bedrifsdagen Dagsplan-4.jpg" 
-       alt="Dagsplan for Bedriftsdagen" 
-       style="max-width:100%; height:auto;">
+<!-- Font Awesome ikoner -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<div class="program-container">
+  <h2>Dagsprogram</h2>
+
+  <div class="program-item">
+    <div class="info">
+      <div class="time"><i class="fas fa-clock"></i> 09:00</div>
+      <div class="place"><i class="fas fa-map-marker-alt"></i> T2</div>
+    </div>
+    <div class="activity">
+      <h3><i class="fas fa-utensils"></i> Frokostforedrag</h3>
+      <p>m/ Subsea7, Equinor, Global Maritime, DNV og Sjøfartsdirektoratet</p>
+      <p>Bedriftsdagen starter med frokostforedrag, som er et mindre foredrag koblet til dagens tema. Temaet vil offentliggjøres i løpet av høsten.</p>
+      <p>På frokostforedraget er det bare samarbeidspartnere sammen med hovedsamarbeidspartner som har mulighet til å delta. Det er opp til hver bedrift hva de ønsker å fokusere på i sin del av frokostforedraget.</p>
+    </div>
+  </div>
+
+  <div class="program-item">
+    <div class="info">
+      <div class="time"><i class="fas fa-clock"></i> 09:00 - 15:00</div>
+      <div class="place"><i class="fas fa-map-marker-alt"></i> Grupperom</div>
+    </div>
+    <div class="activity">
+      <h3><i class="fas fa-lightbulb"></i> Speedintervju</h3>
+      <p>Under selve dagen vil det være muligheter for å holde speedintervjuer parallelt med stands. Her får bedriftene et rom til rådighet, der de utfører speedintervju med påmeldte studenter. Dette er svært populært blant studentene, og en gylden mulighet til å kapre en snart ferdigutdannet sivilingeniør med ettertraktet kompetanse.</p>
+    </div>
+  </div>
+
+  <div class="program-item">
+    <div class="info">
+      <div class="time"><i class="fas fa-clock"></i> 10:00</div>
+      <div class="place"><i class="fas fa-map-marker-alt"></i> Vrimle</div>
+    </div>
+    <div class="activity">
+      <h3><i class="fas fa-user"></i> Standtid i vrimle</h3>
+      <p>Studentene kan møte bedriftene på stand i vrimleområdet.</p>
+    </div>
+  </div>
+
+  <div class="program-item">
+    <div class="info">
+      <div class="time"><i class="fas fa-clock"></i> 12:00</div>
+      <div class="place"><i class="fas fa-map-marker-alt"></i> T2</div>
+    </div>
+    <div class="activity">
+      <h3><i class="fas fa-briefcase"></i> Sommerjobbmaraton</h3>
+      <p>Her får bedriftene 5–8 minutter til å pitche sitt sommerjobb-tilbud for studentene. Formålet er at studentene i de lavere årstrinnene skal sitte igjen med mer kunnskap om hva bedriftene vil ha i en sommerstudent, samt informasjon om hvordan søknadsprosessen foregår og når eventuelle frister er. Dette skaper en tidlig interesse blant studentene, og sikrer bedriftene mange motiverte marinstudenter i søkermassen.</p>
+    </div>
+  </div>
+
+  <div class="program-item">
+    <div class="info">
+      <div class="time"><i class="fas fa-clock"></i> 14:00</div>
+      <div class="place"><i class="fas fa-map-marker-alt"></i> T2</div>
+    </div>
+    <div class="activity">
+      <h3><i class="fas fa-comments"></i> Debatt om årets tema</h3>
+      <p>Her samles kloke hoder fra hoved- og samarbeidspartnerne for å diskutere rundt et dagsaktuelt maritimt tema. Her vil det være åpent for spørsmål fra studenter i regi av ordstyreren.</p>
+    </div>
+  </div>
+
+  <div class="program-item">
+    <div class="info">
+      <div class="time"><i class="fas fa-clock"></i> 17:00</div>
+      <div class="place"><i class="fas fa-map-marker-alt"></i> Samfundet / Kvilhaugen</div>
+    </div>
+    <div class="activity">
+      <h3><i class="fas fa-music"></i> Middag på Kvilhaugen og UKA-revy</h3>
+      <p>
+        Før middag er det lagt opp til at vi drar til Studentersamfundet og ser årets UKErevy sammen.
+        <br><br>
+        Videre tar vi turen til Kvilhaugen, der det lagt opp til middag for bedriftsrepresentanter og diplomstudentene. 
+        Her vil det være en ypperlig mulighet til å bli enda bedre kjent med studentene som snart skal ut i arbeidslivet og er på jakt etter fast jobb.
+        <br><br>
+        Etter middagen reiser vi ned til Midtbyen der det er booket lokale til etterfest!
+      </p>
+    </div>
+  </div>
+
 </div>
+
+<style>
+.program-container {
+  max-width: 850px;
+  margin: 40px auto;
+  font-family: Arial, sans-serif;
+}
+
+.program-container h2 {
+  margin-bottom: 25px;
+  color: #003366;
+}
+
+.program-item {
+  display: flex;
+  border-bottom: 1px solid #ddd;
+  padding: 20px 0;
+}
+
+.info {
+  width: 150px;
+  flex-shrink: 0;
+  font-size: 0.95em;
+  color: #003366;
+}
+
+.info .time, .info .place {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.info i {
+  margin-right: 6px;
+  color: #555;
+}
+
+.activity h3 {
+  margin: 0;
+  font-size: 1.15em;
+  color: #003366;
+  display: flex;
+  align-items: center;
+}
+
+.activity h3 i {
+  margin-right: 8px;
+  color: #66b3ff; 
+}
+
+.activity p {
+  margin: 6px 0;
+  font-size: 0.95em;
+  line-height: 1.5;
+}
+</style>
+
+
 
 <!--START OF FOOTER -->
 <div id="footer">
